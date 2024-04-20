@@ -1,48 +1,39 @@
-## Lecture-1
+## 블로그 최적화
 
-'프론트엔드 개발자를 위한, 실전 웹 성능 최적화(feat. React) - Part. 1' 1번째 강의 소스입니다.
+> Reference: [프론트엔드 성능 최적화 가이드](https://product.kyobobook.co.kr/detail/S000200178292)
 
-### 실행
+### 최적화 내용
 
-1. download sources
+1. 이미지 최적화
 
-```
-$ git clone https://github.com/performance-lecture/lecture-1.git
-```
+   - format webp로 변경
+   - intrinsic size 최적화 (rendered size \* 2)
 
-2. install dependencies
+2. 함수 최적화
 
-```
-$ npm install
-or
-$ yarn
-```
+   - `replace` 메서드와 정규식을 사용하여 병목 코드 개선
 
-3. start development server
+3. Code splitting & lazy loading
 
-```
-$ npm run start
-or
-$ yarn start
-```
+   - `React.lazy` 및 `Suspense` 로 번들 사이즈 최적화
 
-4. start json-server
+4. Text compression
+   - `Content-Encoding=gzip`
 
-```
-$ npm run server
-or
-$ yarn server
-```
-*3번의 dev server 와 다른 콘솔에서 띄워줍니다.
+### 최적화 결과
 
-5. build + serve
+**목록 페이지**
 
-```
-$ npm run serve
-or
-$ yarn serve
-```
+|           | FCP  |   LCP   |  TBT  |  SI  |
+| :-------: | :--: | :-----: | :---: | :--: |
+|   기존    | 0.8s |  1.5s   | 110ms | 0.8s |
+| 성능 개선 | 0.4s |  0.8s   |  0ms  | 0.4s |
+|   결과    | -50% | -46.67% | -100% | -50% |
 
-### 질문
+**디테일 페이지**
 
-궁금하신 부분은 강의 내 질문 & 답변 게시판 또는 해당 레포지토리의 Issues를 이용해주시기 바랍니다.
+|           | FCP  |   LCP   |  TBT   |  SI  |
+| :-------: | :--: | :-----: | :----: | :--: |
+|   기존    | 0.8s |  1.7s   |  30ms  | 0.8s |
+| 성능 개선 | 0.4s |  0.9s   |  50ms  | 0.4s |
+|   결과    | -50% | -47.06% | 66.67% | -50% |
