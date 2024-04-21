@@ -6,7 +6,10 @@ function MainMeta(props) {
   const imgRef = useRef(null);
 
   const columns = [
-    <img data-src={props.src} alt="" ref={imgRef} />,
+    <picture>
+      <source data-srcset={props.srcset} type="image/webp" />
+      <img data-src={props.src} alt="" ref={imgRef} />
+    </picture>,
     <Meta
       title={props.title}
       content={props.content}
@@ -19,7 +22,11 @@ function MainMeta(props) {
     const callback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.src = entry.target.dataset.src;
+          const target = entry.target;
+          const source = target.previousSibling;
+
+          target.src = target.dataset.src;
+          source.srcset = source.dataset.srcset;
           observer.unobserve(entry.target);
         }
       });
