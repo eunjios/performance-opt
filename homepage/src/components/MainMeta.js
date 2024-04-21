@@ -1,7 +1,18 @@
 import React, { useRef, useEffect } from 'react';
+import Meta from './Meta';
+import TwoColumns from './TwoColumns';
 
-function Card(props) {
+function MainMeta(props) {
   const imgRef = useRef(null);
+
+  const columns = [
+    <img data-src={props.src} alt="" ref={imgRef} />,
+    <Meta
+      title={props.title}
+      content={props.content}
+      btnLink={props.btnLink}
+    />,
+  ];
 
   useEffect(() => {
     const options = {};
@@ -22,13 +33,12 @@ function Card(props) {
   }, []);
 
   return (
-    <div className="Card text-center">
-      <img data-src={props.image} ref={imgRef} alt="" />
-      <div className="p-5 font-semibold text-gray-700 text-xl md:text-lg lg:text-xl keep-all">
-        {props.children}
-      </div>
-    </div>
+    <TwoColumns
+      bgColor={props.bgColor}
+      columns={props.type === 'leftImg' ? columns : columns.reverse()}
+      mobileReverse={props.mobileReverse}
+    />
   );
 }
 
-export default Card;
+export default MainMeta;
