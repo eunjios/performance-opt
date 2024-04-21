@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import rioBg from '../assets/rio-2016.jpg';
-import londonBg from '../assets/london-2012.jpg';
-import rioFlag from '../assets/rio-flag.jpeg';
-import londonFlag from '../assets/london-flag.png';
+import rioBg from '../assets/rio-2016.webp';
+import londonBg from '../assets/london-2012.webp';
+import rioFlag from '../assets/rio-flag.webp';
+import londonFlag from '../assets/london-flag.webp';
 
 const Header = () => {
   return (
