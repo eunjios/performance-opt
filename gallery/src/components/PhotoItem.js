@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import LazyLoad from 'react-lazyload';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../redux/imageModal';
 
@@ -12,7 +13,9 @@ function PhotoItem({ photo: { urls, alt } }) {
 
   return (
     <ImageWrap>
-      <Image src={urls.small + '&t=' + new Date().getTime()} alt={alt} onClick={openModal} />
+      <LazyLoad offset={1000}>
+        <Image src={urls.small + '&t=' + new Date().getTime()} alt={alt} onClick={openModal} />
+      </LazyLoad>
     </ImageWrap>
   );
 }
